@@ -14,15 +14,107 @@
 
 ---
 
+## 🗂️ Folder Structure
+
+```
+instahost/
+├── backend/       # Spring Boot backend (Java)
+│   ├── src/
+│   │   └── main/
+│   │       ├── java/
+│   │       │   └── com/instahost/
+│   │       │       ├── InstaHostApplication.java
+│   │       │       ├── controller/
+│   │       │       │   └── UploadController.java
+│   │       │       ├── service/
+│   │       │       │   └── S3Service.java
+│   │       │       └── config/
+│   │       │           └── CorsConfig.java (if needed)
+│   │       └── resources/
+│   │           └── application.properties
+│   └── pom.xml
+├── frontend/      # React frontend (JavaScript)
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── UploadForm.js
+│   │   └── History.js
+│   ├── public/
+│   ├── package.json
+│   └── ...
+└── README.md
+```
+
+---
+
+## ⚙️ How to Set Up the Project
+
+### 1. Backend: Spring Boot Setup
+
+**a. Create the Spring Boot project**
+
+- Using [Spring Initializr](https://start.spring.io/):
+  - Project: Maven
+  - Language: Java
+  - Packaging: Jar
+  - Java: 17+
+  - Dependencies: Spring Web
+
+**b. Directory Setup**
+
+```bash
+mkdir backend
+cd backend
+# Use Spring Initializr or your IDE to generate the project here
+```
+
+**c. Add AWS SDK dependency**  
+Add to your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>software.amazon.awssdk</groupId>
+  <artifactId>s3</artifactId>
+</dependency>
+```
+
+**d. Place the backend code in the structure as described above.**
+
+---
+
+### 2. Frontend: React App Setup
+
+**a. Create the React app**
+
+```bash
+npx create-react-app frontend
+cd frontend
+npm install axios react-dropzone
+```
+
+**b. Place the frontend code in the structure as described above.**
+
+---
+
 ## 🛠️ How to Use InstaHost
 
-1. **Upload Your Site:**  
+1. **Start the Backend**
+   - Set AWS credentials as environment variables (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)
+   - In `/backend`:
+     ```bash
+     ./mvnw spring-boot:run
+     ```
+2. **Start the Frontend**
+   - In `/frontend`:
+     ```bash
+     npm start
+     ```
+   - Open [http://localhost:3000](http://localhost:3000)
+
+3. **Upload Your Site:**  
    - Drag and drop your HTML/CSS/JS files or a ZIP archive via the InstaHost web UI.
-2. **Wait for Upload:**  
-   - Watch the progress bar as InstaHost uploads your files to AWS S3.
-3. **Get Your Link:**  
+4. **Get Your Link:**  
    - Receive an instant public URL to access or share your live site.
-4. **Check Upload History:**  
+5. **Check Upload History:**  
    - Easily view all your previously deployed sites and their URLs.
 
 ---
@@ -33,14 +125,6 @@
 - Event or hackathon landing pages  
 - Demos and proof-of-concept apps  
 - Quick static site sharing with team or clients  
-
----
-
-## ⚡ Why InstaHost?
-
-- Save time—skip manual AWS setup and CLI commands.
-- Use AWS S3's global CDN performance for static sites.
-- No lock-in: You control your bucket and your content.
 
 ---
 
