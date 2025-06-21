@@ -1,0 +1,27 @@
+Phase 1: Core MVP — Static File Upload & Hosting
+
+React UI for file/zip upload with progress feedback
+Spring Boot backend accepting uploads, uploading to AWS S3 with public-read access
+S3 static hosting setup (single bucket, no custom domains)
+Return public S3 link after upload
+Minimal in-memory upload history per session
+Phase 2: Persistent Upload History
+
+Store upload records (file name, S3 URL, timestamp) in a lightweight database (H2 or SQLite to stay free-tier)
+Show persistent upload history on frontend
+Phase 3: User Accounts (Optional)
+
+Add lightweight authentication (Spring Security, JWT, or social login)
+Per-user upload history (separate folders in S3)
+Phase 4: Enhanced File Handling
+
+Support auto-unzipping archives server-side (if storage/computation fits free tier)
+Validate and sanitize uploaded files for security
+Phase 5: Custom Domain Support (Advanced & Optional)
+
+Let users point their own domains (CNAME) to their S3 site
+(Optional) Integrate basic Route53 automation (mindful of AWS free tier DNS limits)
+Phase 6: Quality of Life & Polish
+
+CI/CD pipeline (GitHub Actions for automated build/test/deploy)
+Improved UI/UX polish, error handling, and documentation
